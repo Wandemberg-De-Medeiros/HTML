@@ -4,7 +4,11 @@
 /* Estiliza o corpo da página */
 body {
     font-family: "Chakra Petch", sans-serif; /* Define a fonte padrão */
-    background-color: #DDDDDD; /* Cor de fundo da página */
+    /*background-color: #DDDDDD; /* Cor de fundo da página */
+    background-image: url('musicosBR.jpg'); /*coloca uma imagem de fundo*/
+    background-repeat: no-repeat; /* Impede que a imagem se repita */
+    background-size:cover ; /* Faz a imagem cobrir toda a área, mantendo as proporções */
+    background-position: center; /* Centraliza a imagem */
     display: flex; /* Usa Flexbox para layout */
     flex-direction: column; /* Alinha os itens na vertical */
     align-items: center; /* Centraliza os itens horizontalmente */
@@ -17,7 +21,7 @@ body {
 /* Estiliza os títulos h1 */
 h1 {
     font-size: 2.5rem; /* Tamanho da fonte */
-    color: #222831; /* Cor do texto */
+    color: #1f53a6; /* Cor do texto */
     text-align: center; /* Alinha o texto ao centro */
     letter-spacing: 0.4rem; /* Espaçamento entre letras */
 }
@@ -80,7 +84,7 @@ section button:hover {
 
 /* Estiliza os títulos dentro dos itens de resultado */
 .item-resultado h2 {
-    font-size: 1.5rem; /* Tamanho da fonte */
+    font-size: 15.5rem; /* Tamanho da fonte */
     color: #222831; /* Cor do texto */
 }
 
@@ -101,10 +105,17 @@ section button:hover {
     margin: 0.5rem 0; /* Margem acima e abaixo */
 }
 
+/*estilizar a imagem dos artistas nos resultado*/
+.imagem-artista{
+    width: 75px; 
+    height: auto;
+    margin: auto;
+ }
+
 /* Estiliza o rodapé da página */
 footer {
-    background-color: #F5F7F8; /* Cor de fundo do rodapé */
-    color: #45474B; /* Cor do texto */
+    background-color: #2f2f2f; /* Cor de fundo do rodapé */
+    color: #ffffff; /* Cor do texto */
     text-align: center; /* Alinha o texto ao centro */
     padding: 0; /* Espaçamento interno */
     width: 100%; /* Largura total da página */
