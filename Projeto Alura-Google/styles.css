@@ -109,7 +109,12 @@ section button:hover {
 .imagem-artista{
     width: 75px; 
     height: auto;
-    margin: auto;
+    float: right;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-left: 20px;
+
  }
 
 /* Estiliza o rodapé da página */
