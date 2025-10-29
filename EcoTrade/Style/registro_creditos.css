@@ -1,61 +1,43 @@
-/* Reutilizamos cores e estilos básicos do style.css */
-
-/* Estilos gerais da seção de formulário (Similar ao cadastro.css) */
-.registro-credito-form {
-    padding: 30px;
-}
-
-.registro-credito-form h3 {
-    color: var(--primary-color);
-    margin-top: 20px;
-    margin-bottom: 15px;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 5px;
-}
-
-.registro-credito-form form {
+/* Sidebar - Barra de Navegação */
+.sidebar {
+    width: 250px;
+    background-color: var(--sidebar-bg);
+    color: var(--text-light);
+    /* padding: 20px; */ /* REMOVIDO */
+    padding: 10px 0; /* Novo padding vertical menor para compactar */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    max-width: 800px;
-    margin: 0 auto;
 }
 
-/* Campos obrigatórios */
-.form-group.required label:after {
-    content: " *";
-    color: #dc3545; 
-    font-weight: 700;
+/* Novo: Estilo para o cabeçalho 'EcoTrade Créditos de Carbono' */
+.sidebar-header {
+    padding: 10px 20px 20px 20px;
+    /* Adicione cor e fonte se necessário */
 }
 
-/* Estilo para a mensagem de alerta/aviso */
-.warning-text {
-    background-color: #fff3cd; /* Amarelo claro */
-    color: #856404; /* Amarelo escuro */
-    border: 1px solid #ffeeba;
-    padding: 15px;
+/* Estilo para o item ativo (Home ou Registro de Créditos) */
+.main-nav ul {
+    list-style: none;
+    padding: 0 15px; /* Adiciona espaçamento nas laterais da lista de links */
+}
+
+.main-nav li {
+    /* margin: 10px 0; */ /* ERA 10px, agora 5px */
+    margin: 5px 0; /* Novo espaçamento vertical menor (Imagem 3) */
+}
+
+.main-nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
     border-radius: 5px;
-    margin-bottom: 20px;
-    font-size: 0.9rem;
+    transition: background-color 0.3s;
 }
 
-/* Grid para campos lado a lado (Latitude/Longitude) */
-.form-group-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Divide em duas colunas iguais */
-    gap: 20px;
-}
-
-/* Input de tipo file */
-.form-group input[type="file"] {
-    padding: 5px 0; /* Ajusta o padding para o input file */
-    border: none;
-}
-
-/* Responsividade */
-@media (max-width: 600px) {
-    .form-group-grid {
-        grid-template-columns: 1fr; 
-        gap: 15px;
-    }
+/* CORREÇÃO 2.2: Destaque sólido e cor para o item ativo */
+.main-nav a:hover, .main-nav li.active a {
+    background-color: #354a63; /* Tom de azul marinho mais claro para destaque */
+    color: var(--text-light); /* Mantém texto branco */
 }

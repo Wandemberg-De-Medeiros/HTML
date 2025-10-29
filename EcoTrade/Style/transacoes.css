@@ -1,8 +1,17 @@
 /* Reutilizamos cores e estilos básicos do style.css e de outras páginas de formulário */
 
+/* Variáveis de cores para consistência */
+:root {
+    --buy-button-color: #28a745; /* Verde para 'Comprar' */
+    --sell-button-color: #007bff; /* Azul para 'Vender/Listar' */
+}
+
 /* Seção de Marketplace e Venda */
 .marketplace-section, .sell-credits-section {
+    background-color: white;
     padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     margin-bottom: 20px;
 }
 
@@ -14,11 +23,12 @@
     padding-bottom: 5px;
 }
 
-/* Filtros do Marketplace */
+/* Filtros do Marketplace (Conforme o modelo) */
 .marketplace-filters {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    align-items: center;
 }
 
 .marketplace-filters input,
@@ -32,37 +42,23 @@
 
 .marketplace-filters button {
     flex-shrink: 0; /* Impede que o botão encolha */
+    padding: 10px 15px; /* Ajusta o tamanho do botão de busca */
+    font-size: 0.9rem;
 }
 
 /* Tabela de Dados (Reutilizando .data-table do style.css) */
-.data-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.data-table th, .data-table td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.data-table th {
-    background-color: #f8f9fa;
-    color: #495057;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-}
-
-.data-table tbody tr:hover {
+.marketplace-table th {
     background-color: #f1f1f1;
 }
 
-/* Estilo do botão de Ação (Comprar) */
+.price-col {
+    font-weight: 700;
+    color: #388e3c; /* Verde escuro para preço */
+}
+
+/* Botão de Compra */
 .btn-buy {
-    background-color: #28a745; /* Verde de sucesso */
+    background-color: var(--buy-button-color); /* Verde */
     color: white;
     border: none;
     padding: 8px 15px;
@@ -70,95 +66,52 @@
     cursor: pointer;
     font-weight: 600;
     transition: background-color 0.2s;
+    font-size: 0.9rem;
 }
 
 .btn-buy:hover {
-    background-color: #218838;
+    background-color: #1e7e34;
 }
 
-/* Seção de Venda (Formulário) */
+/* Seção de Venda (Sell Credits) */
 .sell-credits-section {
-    border-top: 1px solid var(--border-color);
-    padding-top: 30px;
+    margin-top: 40px;
 }
 
-.section-description {
-    font-size: 0.9rem;
-    color: #6c757d;
+.sell-credits-section p {
     margin-bottom: 20px;
+    color: #6c757d;
 }
 
 .sell-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     max-width: 800px;
-    margin: 0 auto 30px auto;
 }
 
-/* Grid de duas colunas para o formulário de venda */
+/* Grid de duas colunas para o formulário de venda (Volume e Preço) */
 .form-group-grid.two-cols {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 30px; /* Espaço maior entre os campos */
 }
 
 /* Botão de Listar para Venda */
-.btn-list-sale {
-    background-color: var(--primary-color); /* Azul principal */
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background-color 0.2s;
-    width: fit-content;
-    align-self: center;
+.btn-primary { /* Reutiliza o estilo primário do style.css */
+    align-self: flex-start; /* Alinha o botão à esquerda */
+    margin-top: 0;
+    background-color: var(--sell-button-color); /* Azul para Venda */
 }
 
-.btn-list-sale:hover {
-    background-color: #004b7f; /* Tom mais escuro do azul */
+.btn-primary:hover {
+    background-color: #0056b3;
 }
 
-.listed-credits-title {
-    margin-top: 30px;
-    margin-bottom: 15px;
-    color: #495057;
-    font-weight: 600;
-}
-
-/* Status Ativo na Tabela de Créditos Listados */
-.status-active {
-    color: #28a745; /* Verde */
-    font-weight: 600;
-}
-
-/* Botão de Cancelar Venda */
-.btn-cancel {
-    background-color: #dc3545; /* Vermelho de perigo */
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background-color 0.2s;
-}
-
-.btn-cancel:hover {
-    background-color: #c82333;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .marketplace-filters {
-        flex-direction: column;
-    }
-    .marketplace-filters button {
-        width: 100%;
-    }
-    .form-group-grid.two-cols {
-        grid-template-columns: 1fr; 
-    }
+/* Texto de ajuda no formulário */
+.form-hint {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 5px;
+    display: block;
 }
