@@ -1,23 +1,22 @@
+{% load static %} 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoTrade - Plataforma de Comércio de Créditos de Carbono</title>
-    <link rel="stylesheet" href="../Style/style.css">
-    <link rel="stylesheet" href="../Style/apresentacao.css">
-    </head>
+    <link rel="stylesheet" href="{% static 'apresentacao.css' %}"> 
+</head>
 <body>
     <div class="landing-page-container">
-        
         <header class="landing-header">
             <div class="logo">
                 <h1>EcoTrade</h1>
                 <p>O Futuro do Carbono Regional</p>
             </div>
             <nav class="auth-nav">
-                <a href="login.html" class="btn-login">Login</a>
-                <a href="cadastro.html" class="btn-primary">Cadastre-se</a>
+                <a href="{% url 'login' %}" class="btn-login">Login</a>
+                <a href="{% url 'cadastro' %}" class="btn-primary">Cadastre-se</a>
             </nav>
         </header>
 
@@ -28,34 +27,13 @@
                     A plataforma EcoTrade conecta produtores rurais da Amazônia que sequestram carbono a empresas que buscam compensação ambiental de forma transparente e rastreável.
                 </p>
                 <div class="cta-buttons">
-                    <a href="cadastro.html" class="btn-primary btn-cta">Quero me Cadastrar</a>
+                    <a href="{% url 'cadastro' %}" class="btn-primary btn-cta">Quero me Cadastrar</a>
                     <a href="#saiba-mais" class="btn-secondary btn-cta">Saiba Mais Sobre o Projeto</a>
                 </div>
             </div>
             <div class="hero-image">
                 <i class="fas fa-tree fa-7x"></i> 
                 <p>Tecnologia a favor da Bioeconomia.</p>
-            </div>
-        </section>
-
-        <section class="features-section">
-            <h3>Nossa Proposta de Valor</h3>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-leaf fa-2x"></i>
-                    <h4>Registro Confiável</h4>
-                    <p>Validação e registro seguro de créditos de carbono gerados em áreas de manejo e reflorestamento regional.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-exchange-alt fa-2x"></i>
-                    <h4>Transações Diretas</h4>
-                    <p>Um marketplace eficiente que liga diretamente o gerador do crédito à empresa compradora.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-map-marker-alt fa-2x"></i>
-                    <h4>Rastreabilidade</h4>
-                    <p>Tecnologia para garantir a origem, data e localização exata de cada tonelada de CO2 compensada.</p>
-                </div>
             </div>
         </section>
 

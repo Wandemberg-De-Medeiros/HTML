@@ -1,116 +1,58 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoTrade Dashboard</title>
-    <link rel="stylesheet" href="../Style/style.css">
-    </head>
+    <title>EcoTrade - Plataforma de Comércio de Créditos de Carbono</title> 
+<link rel="stylesheet" href="{% static 'style.css' %}"> 
+</head>
 <body>
-    <div class="dashboard-container">
-        <aside class="sidebar">
-            <div class="logo">
-                <h1>EcoTrade</h1>
-                <p>Créditos de Carbono</p>
+
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <nav class="main-nav">
+            <ul>
+                <li class="active"><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Dashboard Inicial</a></li>
+                <li><a href="{% url 'cadastro' %}"><i class="fas fa-user-plus"></i> Cadastro de Usuários</a></li>
+                <li><a href="{% url 'registro_creditos' %}"><i class="fas fa-leaf"></i> Registro de Créditos</a></li>
+                <li><a href="{% url 'transacoes' %}"><i class="fas fa-exchange-alt"></i> Comprar/Vender Créditos</a></li>
+                <li><a href="{% url 'sair' %}"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <h2>Bem-vindo(a), {{ user_nome }}!</h2>
+            <div class="user-info">
+                <span class="user-role">Tipo: {{ user_tipo }}</span>
+                <i class="fas fa-cog"></i> 
             </div>
-         <nav class="main-nav">
-    <ul>
-        <li><a href="index.html"><i class="fas fa-home"></i> Dashboard Inicial</a></li>
-        <li><a href="cadastro.html"><i class="fas fa-user-plus"></i> Cadastro de Usuários</a></li>
-        <li><a href="registro_creditos.html"><i class="fas fa-leaf"></i> Registro de Créditos</a></li>
-        <li class="active"><a href="transacoes.html"><i class="fas fa-exchange-alt"></i> Comprar/Vender Créditos</a></li>
-        <li><a href="apresentacao.html"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
-    </ul>
-</nav>
-        </aside>
+        </header>
 
-        <main class="main-content">
-            <header class="header">
-                <h2>Bem-vindo(a), [Nome do Usuário]!</h2>
-                <div class="user-info">
-                    <span class="user-role">Tipo: Administrador/Produtor/Empresa</span>
-                    <i class="fas fa-cog"></i> </div>
-            </header>
+        <section class="dashboard-summary">
+            <div class="stat-card balance-card">
+                <h4>Saldo de Créditos</h4>
+                <p class="stat-value">{{ saldo }} <span class="unit">tCO2e</span></p>
+                <p class="stat-detail">Disponíveis para Negociação</p>
+            </div>
+            </section>
+        
+        <section class="recent-transactions">
+            <tbody>
+                {% for transacao in transacoes %}
+                <tr>
+                    <td>{{ transacao.id }}</td>
+                    <td>{{ transacao.data }}</td>
+                    <td class="type-{{ transacao.tipo|lower }}">{{ transacao.tipo }}</td>
+                    <td>{{ transacao.quantidade }}</td>
+                    <td>{{ transacao.parte }}</td>
+                    <td class="status-{{ transacao.status|lower }}">{{ transacao.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </section>
 
-            <section class="dashboard-summary">
-                <h3>Dashboard Inicial</h3>
-                <div class="stats-grid">
-                    <div class="stat-card balance-card">
-                        <h4>Saldo de Créditos</h4>
-                        <p class="stat-value">12.500 <span class="unit">tCO2e</span></p>
-                        <p class="stat-detail">Disponíveis para Negociação</p>
-                    </div>
-                    <div class="stat-card transactions-card">
-                        <h4>Transações Recentes</h4>
-                        <p class="stat-value">+5</p>
-                        <p class="stat-detail">Nos últimos 7 dias</p>
-                    </div>
-                    <div class="stat-card producers-card">
-                        <h4>Produtores Registrados</h4>
-                        <p class="stat-value">450</p>
-                        <p class="stat-detail">Na Região Amazônica</p>
-                    </div>
-                    <div class="stat-card companies-card">
-                        <h4>Empresas Compradoras</h4>
-                        <p class="stat-value">85</p>
-                        <p class="stat-detail">Compensando Emissões</p>
-                    </div>
-                </div>
-            </section>
-            
-            <section class="recent-transactions">
-                <h3>Histórico de Transações Recentes</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID Transação</th>
-                            <th>Data</th>
-                            <th>Tipo</th>
-                            <th>Quantidade (tCO2e)</th>
-                            <th>Parte Envolvida</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#001023</td>
-                            <td>28/10/2025</td>
-                            <td class="type-buy">Compra</td>
-                            <td>500</td>
-                            <td>Empresa Alfa Ltda</td>
-                            <td class="status-completed">Concluída</td>
-                        </tr>
-                        <tr>
-                            <td>#001022</td>
-                            <td>27/10/2025</td>
-                            <td class="type-sell">Venda</td>
-                            <td>150</td>
-                            <td>Produtor Rural Beto</td>
-                            <td class="status-completed">Concluída</td>
-                        </tr>
-                        </tbody>
-                </table>
-            </section>
-
-            <section id="registro-carbono" class="form-section">
-                <h3>Registro de Novos Créditos de Carbono (Apenas Produtor Rural)</h3>
-                <form class="carbon-form">
-                    <div class="form-group">
-                        <label for="quantidade">Quantidade (tCO2e):</label>
-                        <input type="number" id="quantidade" name="quantidade" required min="1">
-                    </div>
-                    <div class="form-group">
-                        <label for="origem">Origem/Projeto:</label>
-                        <input type="text" id="origem" name="origem" placeholder="Ex: Projeto de Reflorestamento 'X'" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="data-geracao">Data de Geração:</label>
-                        <input type="date" id="data-geracao" name="data-geracao" required>
-                    </div>
-                    <button type="submit" class="btn-primary">Registrar Créditos</button>
-                </form>
-            </section>
         </main>
-    </div>
-</body>
-</html>
+</div>
