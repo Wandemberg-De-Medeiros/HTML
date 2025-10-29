@@ -1,29 +1,24 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoTrade - Login</title>
-    <link rel="stylesheet" href="{% static 'login.css' %}">
-</head>
+    <link rel="stylesheet" href="../Style/style.css">
+    <link rel="stylesheet" href="../Style/login.css">
+    </head>
 <body>
     <div class="login-container">
         <div class="login-card">
             <div class="login-header">
-                <a href="{% url 'apresentacao' %}" class="back-link">
+                <a href="apresentacao.html" class="back-link">
                     &larr; Voltar
                 </a>
                 <h1>EcoTrade</h1>
                 <p>Acesse sua plataforma de créditos de carbono</p>
             </div>
             
-            {% if erro %}
-                <p style="color: red; margin-bottom: 15px;">{{ erro }}</p>
-            {% endif %}
-
-            <form class="login-form" method="POST" action="{% url 'login' %}">
-                {% csrf_token %} 
+            <form class="login-form">
                 
                 <div class="form-group">
                     <label for="email">E-mail ou Usuário</label>
@@ -42,7 +37,7 @@
                 <button type="submit" class="btn-login-submit">Entrar</button>
 
                 <p class="register-text">
-                    Ainda não tem conta? <a href="{% url 'cadastro' %}">Cadastre-se agora</a>
+                    Ainda não tem conta? <a href="cadastro.html">Cadastre-se agora</a>
                 </p>
             </form>
         </div>

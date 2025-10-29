@@ -1,39 +1,82 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoTrade - Plataforma de Comércio de Créditos de Carbono</title> 
-<link rel="stylesheet" href="{% static 'style.css' %}"> 
-<link rel="stylesheet" href="{% static 'registro_creditos.css' %}">
+    <title>EcoTrade - Registro de Créditos</title>
+    <link rel="stylesheet" href="../Style/style.css">
+    <link rel="stylesheet" href="../Style/registro_creditos.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>EcoTrade</h1>
+                <p>Créditos de Carbono</p>
+            </div>
+           <nav class="main-nav">
+    <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Dashboard Inicial</a></li>
+        <li><a href="cadastro.html"><i class="fas fa-user-plus"></i> Cadastro de Usuários</a></li>
+        <li><a href="registro_creditos.html"><i class="fas fa-leaf"></i> Registro de Créditos</a></li>
+        <li class="active"><a href="transacoes.html"><i class="fas fa-exchange-alt"></i> Comprar/Vender Créditos</a></li>
+        <li><a href="apresentacao.html"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+    </ul>
+</nav>
+        </aside>
 
-<div class="dashboard-container">
-    <aside class="sidebar">
-        <nav class="main-nav">
-            <ul>
-                <li><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Dashboard Inicial</a></li>
-                <li><a href="{% url 'cadastro' %}"><i class="fas fa-user-plus"></i> Cadastro de Usuários</a></li>
-                <li class="active"><a href="{% url 'registro_creditos' %}"><i class="fas fa-leaf"></i> Registro de Créditos</a></li>
-                <li><a href="{% url 'transacoes' %}"><i class="fas fa-exchange-alt"></i> Comprar/Vender Créditos</a></li>
-                <li><a href="{% url 'sair' %}"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
-            </ul>
-        </nav>
-    </aside>
+        <main class="main-content">
+            <header class="header">
+                <h2>Registro de Créditos de Carbono</h2>
+                <div class="user-info">
+                    <span class="user-role">Tipo: Produtor Rural</span>
+                    <i class="fas fa-cog"></i>
+                </div>
+            </header>
 
-    <main class="main-content">
-        {% if mensagem_sucesso %}
-            <p style="color: green; background-color: #e6ffe6; padding: 15px; border-radius: 5px; margin-bottom: 20px;">{{ mensagem_sucesso }}</p>
-        {% endif %}
-        
-        <section class="form-section registro-credito-form">
-            <h3>Informações sobre o Lote de Créditos</h3>
-            
-            <form method="POST" action="{% url 'registro_creditos' %}">
-                {% csrf_token %}
+            <section class="form-section registro-credito-form">
+                <h3>Informações sobre o Lote de Créditos</h3>
+                <p class="warning-text">
+                    * Este formulário é exclusivo para Produtores Rurais. O registro está sujeito à verificação e aprovação do Administrador.
+                </p>
                 
-                <button type="submit" class="btn-primary">Enviar para Aprovação</button>
-            </form>
-        </section>
-    </main>
-</div>
+                <form>
+                    <div class="form-group required">
+                        <label for="quantidade">Quantidade de Créditos (tCO2e):</label>
+                        <input type="number" id="quantidade" name="quantidade" required min="1" placeholder="Ex: 500">
+                    </div>
+
+                    <div class="form-group required">
+                        <label for="origem">Origem/Projeto (Descrição detalhada da geração):</label>
+                        <input type="text" id="origem" name="origem" required placeholder="Ex: Projeto de Reflorestamento 'X' - Fazenda Santo Antônio, Pará">
+                    </div>
+                    
+                    <div class="form-group-grid">
+                        <div class="form-group">
+                            <label for="lat">Latitude (GPS):</label>
+                            <input type="text" id="lat" name="lat" placeholder="-1.4558">
+                        </div>
+                        <div class="form-group">
+                            <label for="lon">Longitude (GPS):</label>
+                            <input type="text" id="lon" name="lon" placeholder="-48.5085">
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label for="data-geracao">Data de Geração (Início do Período):</label>
+                        <input type="date" id="data-geracao" name="data-geracao" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="documentacao">Anexar Documentação/Certificados (Simulação):</label>
+                        <input type="file" id="documentacao" name="documentacao" accept=".pdf,.jpg,.png">
+                    </div>
+
+                    <button type="submit" class="btn-primary">Enviar para Aprovação</button>
+                    <p class="required-notice">* Campos marcados são obrigatórios.</p>
+                </form>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
