@@ -1,95 +1,48 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoTrade - Cadastro de Usuário</title>
-    <link rel="stylesheet" href="../Style/style.css">
-    <link rel="stylesheet" href="../Style/cadastro.css">
-</head>
-<body>
-    <div class="dashboard-container">
-        <aside class="sidebar">
-            <div class="logo">
-                <h1>EcoTrade</h1>
-                <p>Créditos de Carbono</p>
-            </div>
-            <nav class="main-nav">
-    <ul>
-        <li><a href="index.html"><i class="fas fa-home"></i> Dashboard Inicial</a></li>
-        <li><a href="cadastro.html"><i class="fas fa-user-plus"></i> Cadastro de Usuários</a></li>
-        <li><a href="registro_creditos.html"><i class="fas fa-leaf"></i> Registro de Créditos</a></li>
-        <li class="active"><a href="transacoes.html"><i class="fas fa-exchange-alt"></i> Comprar/Vender Créditos</a></li>
-        <li><a href="apresentacao.html"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
-    </ul>
-</nav>
-        </aside>
+    <title>EcoTrade - Plataforma de Comércio de Créditos de Carbono</title> 
+<link rel="stylesheet" href="{% static 'style.css' %}"> 
+<link rel="stylesheet" href="{% static 'cadastro.css' %}">
 
-        <main class="main-content">
-            <header class="header">
-                <h2>Cadastro de Novo Usuário</h2>
-                <div class="user-info">
-                    <span class="user-role">Tipo: Administrador/Produtor/Empresa</span>
-                    <i class="fas fa-cog"></i>
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <nav class="main-nav">
+            <ul>
+                <li><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Dashboard Inicial</a></li>
+                <li class="active"><a href="{% url 'cadastro' %}"><i class="fas fa-user-plus"></i> Cadastro de Usuários</a></li>
+                <li><a href="{% url 'registro_creditos' %}"><i class="fas fa-leaf"></i> Registro de Créditos</a></li>
+                <li><a href="{% url 'transacoes' %}"><i class="fas fa-exchange-alt"></i> Comprar/Vender Créditos</a></li>
+                <li><a href="{% url 'sair' %}"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        {% if mensagem_erro %}
+            <p style="color: red; margin-bottom: 15px;">{{ mensagem_erro }}</p>
+        {% endif %}
+
+        <section class="form-section cadastro-usuario-form">
+            <h3>Dados do Usuário</h3>
+            <form method="POST" action="{% url 'cadastro' %}">
+                {% csrf_token %} 
+                
+                <div class="form-group required">
+                    <label for="tipo-usuario">Tipo de Usuário:</label>
+                    <select id="tipo-usuario" name="tipo-usuario" required>
+                        <option value="">Selecione o Tipo</option>
+                        <option value="produtor">Produtor Rural</option>
+                        <option value="empresa">Empresa Compradora</option>
+                        <option value="administrador">Administrador</option>
+                    </select>
                 </div>
-            </header>
-
-            <section class="form-section cadastro-usuario-form">
-                <h3>Dados do Usuário</h3>
-                <form>
-                    
-                    <div class="form-group required">
-                        <label for="tipo-usuario">Tipo de Usuário:</label>
-                        <select id="tipo-usuario" name="tipo-usuario" required>
-                            <option value="">Selecione o Tipo</option>
-                            <option value="produtor">Produtor Rural</option>
-                            <option value="empresa">Empresa Compradora</option>
-                            <option value="administrador">Administrador</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group required">
-                        <label for="nome-completo">Nome Completo / Razão Social:</label>
-                        <input type="text" id="nome-completo" name="nome-completo" required placeholder="Nome ou Razão Social">
-                    </div>
-
-                    <div class="form-group required">
-                        <label for="documento">CPF / CNPJ:</label>
-                        <input type="text" id="documento" name="documento" required placeholder="000.000.000-00 ou 00.000.000/0000-00">
-                    </div>
-
-                    <div class="form-group required">
-                        <label for="email">E-mail:</label>
-                        <input type="email" id="email" name="email" required placeholder="usuario@ecotrade.com.br">
-                    </div>
-
-                    <div class="form-group-grid">
-                        <div class="form-group required">
-                            <label for="cidade">Cidade:</label>
-                            <input type="text" id="cidade" name="cidade" required>
-                        </div>
-                        <div class="form-group required">
-                            <label for="estado">Estado (UF):</label>
-                            <input type="text" id="estado" name="estado" required maxlength="2">
-                        </div>
-                    </div>
-                    
-                    <h3>Dados de Acesso</h3>
-                    <div class="form-group required">
-                        <label for="senha">Senha:</label>
-                        <input type="password" id="senha" name="senha" required>
-                    </div>
-
-                    <div class="form-group required">
-                        <label for="confirma-senha">Confirmar Senha:</label>
-                        <input type="password" id="confirma-senha" name="confirma-senha" required>
-                    </div>
-
-                    <button type="submit" class="btn-primary">Finalizar Cadastro</button>
-                    <p class="required-notice">* Campos marcados são obrigatórios.</p>
-                </form>
-            </section>
-        </main>
-    </div>
-</body>
-</html>
+                
+                <button type="submit" class="btn-primary">Finalizar Cadastro</button>
+            </form>
+        </section>
+    </main>
+</div>
