@@ -1,0 +1,164 @@
+/* Reutilizamos cores e estilos básicos do style.css e de outras páginas de formulário */
+
+/* Seção de Marketplace e Venda */
+.marketplace-section, .sell-credits-section {
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.marketplace-section h3, .sell-credits-section h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 5px;
+}
+
+/* Filtros do Marketplace */
+.marketplace-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.marketplace-filters input,
+.marketplace-filters select {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    flex-grow: 1;
+}
+
+.marketplace-filters button {
+    flex-shrink: 0; /* Impede que o botão encolha */
+}
+
+/* Tabela de Dados (Reutilizando .data-table do style.css) */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.data-table th, .data-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.data-table th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.data-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilo do botão de Ação (Comprar) */
+.btn-buy {
+    background-color: #28a745; /* Verde de sucesso */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.btn-buy:hover {
+    background-color: #218838;
+}
+
+/* Seção de Venda (Formulário) */
+.sell-credits-section {
+    border-top: 1px solid var(--border-color);
+    padding-top: 30px;
+}
+
+.section-description {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+.sell-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+}
+
+/* Grid de duas colunas para o formulário de venda */
+.form-group-grid.two-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Botão de Listar para Venda */
+.btn-list-sale {
+    background-color: var(--primary-color); /* Azul principal */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    width: fit-content;
+    align-self: center;
+}
+
+.btn-list-sale:hover {
+    background-color: #004b7f; /* Tom mais escuro do azul */
+}
+
+.listed-credits-title {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #495057;
+    font-weight: 600;
+}
+
+/* Status Ativo na Tabela de Créditos Listados */
+.status-active {
+    color: #28a745; /* Verde */
+    font-weight: 600;
+}
+
+/* Botão de Cancelar Venda */
+.btn-cancel {
+    background-color: #dc3545; /* Vermelho de perigo */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.btn-cancel:hover {
+    background-color: #c82333;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .marketplace-filters {
+        flex-direction: column;
+    }
+    .marketplace-filters button {
+        width: 100%;
+    }
+    .form-group-grid.two-cols {
+        grid-template-columns: 1fr; 
+    }
+}

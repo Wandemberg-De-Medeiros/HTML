@@ -1,0 +1,61 @@
+/* Reutilizamos cores e estilos básicos do style.css */
+
+/* Estilos gerais da seção de formulário (Similar ao cadastro.css) */
+.registro-credito-form {
+    padding: 30px;
+}
+
+.registro-credito-form h3 {
+    color: var(--primary-color);
+    margin-top: 20px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 5px;
+}
+
+.registro-credito-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Campos obrigatórios */
+.form-group.required label:after {
+    content: " *";
+    color: #dc3545; 
+    font-weight: 700;
+}
+
+/* Estilo para a mensagem de alerta/aviso */
+.warning-text {
+    background-color: #fff3cd; /* Amarelo claro */
+    color: #856404; /* Amarelo escuro */
+    border: 1px solid #ffeeba;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+/* Grid para campos lado a lado (Latitude/Longitude) */
+.form-group-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide em duas colunas iguais */
+    gap: 20px;
+}
+
+/* Input de tipo file */
+.form-group input[type="file"] {
+    padding: 5px 0; /* Ajusta o padding para o input file */
+    border: none;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .form-group-grid {
+        grid-template-columns: 1fr; 
+        gap: 15px;
+    }
+}
