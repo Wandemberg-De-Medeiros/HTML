@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-j%&v#g-8q_#t$s*9w%b@q3r9yq7#*@&t^h9t(u#8k!p&d_r^j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -137,3 +137,11 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CSRF Configuration - Permite requisições de localhost via HTTP e HTTPS
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    'https://localhost:8000',
+    'http://127.0.0.1:8000',
+    'https://127.0.0.1:8000',
+]
