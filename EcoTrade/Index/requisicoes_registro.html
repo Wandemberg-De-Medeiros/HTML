@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoTrade - Registro de Créditos</title> 
+    <title>EcoTrade - Requisições de Registro</title> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{% static 'style.css' %}"> 
-    <link rel="stylesheet" href="{% static 'registro_creditos.css' %}">
+    <link rel="stylesheet" href="{% static 'requisicoes.css' %}">
 </head>
 <body>
 
@@ -52,65 +52,64 @@
 
     <main class="main-content">
         <header class="header">
-            <h2>Registro de Créditos de Carbono</h2>
+            <h2>Auditoria: Requisições de Registro de Créditos</h2>
             <div class="user-info">
                 <span class="user-role">Tipo: {{ user_tipo }}</span>
                 <i class="fas fa-cog"></i> 
             </div>
         </header>
-        
+
         {% if mensagem_sucesso %}
             <p class="alert-box success-box">{{ mensagem_sucesso }}</p>
         {% endif %}
         
-        <section class="content-section form-section registro-credito-form">
-            <h3>Informações sobre o Lote de Créditos</h3>
-            
-            <div class="warning-text">
-                * Este formulário é exclusivo para Produtores Rurais. O registro está sujeito à verificação e aprovação do Administrador.
-            </div>
+        <section class="content-section requisicoes-section">
+            <h3>Requisições Pendentes (Produtor -> Auditor)</h3>
 
-            <form method="POST" action="{% url 'registro_creditos' %}" class="carbon-form">
-                {% csrf_token %}
-                
-                <div class="form-group required">
-                    <label for="quantidade">Quantidade de Créditos (tCO2e): *</label>
-                    <input type="number" id="quantidade" name="quantidade" placeholder="Ex: 500" required>
+            {% if requisicoes %}
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Produtor</th>
+                                <th>Origem</th>
+                                <th>Volume (tCO2e)</th>
+                                <th>Data Reg.</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for req in requisicoes %}
+                            <tr>
+                                <td>{{ req.req_id }}</td>
+                                <td>
+                                    {{ req.produtor }}
+                                    <a href="#" class="view-details" title="Ver dados de cadastro"> <i class="fas fa-eye"></i></a>
+                                </td>
+                                <td>{{ req.origem }}</td>
+                                <td>{{ req.quantidade }}</td>
+                                <td>{{ req.data_geracao }}</td>
+                                <td class="action-buttons">
+                                    <form method="POST" style="display: inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="req_id" value="{{ req.req_id }}">
+                                        <button type="submit" name="acao" value="aprovar" class="btn-action btn-approve">Aprovar</button>
+                                        <button type="submit" name="acao" value="rejeitar" class="btn-action btn-reject">Rejeitar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
-                
-                <div class="form-group required">
-                    <label for="origem">Origem/Projeto (Descrição detalhada da geração): *</label>
-                    <input type="text" id="origem" name="origem" placeholder="Ex: Projeto de Reflorestamento 'X' - Fazenda Santo Antônio, Pará" required>
+            {% else %}
+                <div class="alert-box info-box">
+                    Não há requisições de registro pendentes no momento.
                 </div>
-
-                <div class="form-group-grid">
-                    <div class="form-group">
-                        <label for="latitude">Latitude (GPS):</label>
-                        <input type="text" id="latitude" name="latitude" placeholder="-1.4558">
-                    </div>
-                    <div class="form-group">
-                        <label for="longitude">Longitude (GPS):</label>
-                        <input type="text" id="longitude" name="longitude" placeholder="-48.5085">
-                    </div>
-                </div>
-
-                <div class="form-group required">
-                    <label for="data-geracao">Data de Geração (Início do Período): *</label>
-                    <input type="date" id="data-geracao" name="data-geracao" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Anexar Documentação/Certificados (Simulação):</label>
-                    <input type="file" id="documentacao" name="documentacao">
-                </div>
-            
-                <p class="required-notice">* Campos marcados são obrigatórios.</p>
-                
-                <button type="submit" class="btn-primary">Enviar para Aprovação</button>
-            </form>
+            {% endif %}
         </section>
     </main>
 </div>
-
 </body>
 </html>

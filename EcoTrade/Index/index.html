@@ -17,14 +17,35 @@
             <p>Créditos de Carbono</p>
         </div>
         <nav class="main-nav">
-            <ul>
-                <li class="active"><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Home </a></li>
-                <li><a href="{% url 'cadastro' %}"><i class="fas fa-user-plus"></i> Cadastro de Usuários</a></li>
-                <li><a href="{% url 'registro_creditos' %}"><i class="fas fa-leaf"></i> Registro de Créditos</a></li>
-                <li><a href="{% url 'transacoes' %}"><i class="fas fa-exchange-alt"></i> Comprar/Vender Créditos</a></li>
-                <li><a href="{% url 'sair' %}"><i class="fas fa-sign-out-alt"></i> Sair</a></li> 
-            </ul>
-        </nav>
+    <ul>
+        <li class="{% if active_page == 'dashboard' %}active{% endif %}"><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Home</a></li>
+        
+        <li class="{% if active_page == 'cadastro' %}active{% endif %}"><a href="{% url 'cadastro' %}"><i class="fas fa-user-plus"></i> Cadastro de Usuários</a></li>
+
+        {% if user_tipo == 'Administrador' %}
+            <li class="{% if active_page == 'requisicoes_registro' %}active{% endif %}">
+                <a href="{% url 'requisicoes_registro' %}">
+                    <i class="fas fa-check-circle"></i> Requisições de Registro
+                    {% if pendencias > 0 %}<span class="badge">{{ pendencias }}</span>{% endif %}
+                </a>
+            </li>
+            <li class="{% if active_page == 'requisicoes_transacao' %}active{% endif %}">
+                <a href="{% url 'requisicoes_transacao' %}">
+                    <i class="fas fa-exchange-alt"></i> Requisições Compra/Venda
+                </a>
+            </li>
+        {% else %}
+            <li class="{% if active_page == 'registro_creditos' %}active{% endif %}">
+                <a href="{% url 'registro_creditos' %}"><i class="fas fa-leaf"></i> Registro de Créditos</a>
+            </li>
+            <li class="{% if active_page == 'transacoes' %}active{% endif %}">
+                <a href="{% url 'transacoes' %}"><i class="fas fa-exchange-alt"></i> Comprar/Vender Créditos</a>
+            </li>
+        {% endif %}
+        
+        <li><a href="{% url 'sair' %}"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+    </ul>
+</nav>
     </aside>
 
     <main class="main-content">
