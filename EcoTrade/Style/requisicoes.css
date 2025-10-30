@@ -1,0 +1,84 @@
+/* Arquivo: Style/requisicoes.css */
+
+/* Seção principal de requisições */
+.requisicoes-section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.requisicoes-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+/* Estilo para link de detalhes do usuário */
+.view-details {
+    color: #007bff;
+    margin-left: 5px;
+}
+
+/* Botões de Ação na Tabela */
+.action-buttons {
+    min-width: 150px; /* Garante que os botões caibam */
+}
+
+.btn-action {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-left: 5px;
+    transition: background-color 0.2s;
+}
+
+.btn-approve {
+    background-color: #28a745; /* Verde */
+    color: white;
+}
+
+.btn-approve:hover {
+    background-color: #1e7e34;
+}
+
+.btn-reject {
+    background-color: #dc3545; /* Vermelho */
+    color: white;
+}
+
+.btn-reject:hover {
+    background-color: #c82333;
+}
+
+/* Cores de destaque para a coluna Tipo (Compra/Venda) */
+.type-venda {
+    color: #007bff; /* Azul */
+    font-weight: 700;
+}
+
+.type-compra {
+    color: #28a745; /* Verde */
+    font-weight: 700;
+}
+
+/* Alertas de status */
+.alert-box {
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.success-box {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.info-box {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
