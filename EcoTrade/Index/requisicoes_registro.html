@@ -91,10 +91,19 @@
                                 <td>{{ req.quantidade }}</td>
                                 <td>{{ req.data_geracao }}</td>
                                 <td class="action-buttons">
-                                    <form method="POST" style="display: inline;">
+                                    <form method="POST" action="{% url 'requisicoes_registro' %}" style="display: inline;">
                                         {% csrf_token %}
-                                        <input type="hidden" name="req_id" value="{{ req.req_id }}">
+                                        
+                                        <input type="hidden" name="req_id" value="{{ req.id }}"> 
+                                        
                                         <button type="submit" name="acao" value="aprovar" class="btn-action btn-approve">Aprovar</button>
+                                    </form>
+                                    
+                                    <form method="POST" action="{% url 'requisicoes_registro' %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        
+                                        <input type="hidden" name="req_id" value="{{ req.id }}">
+                                        
                                         <button type="submit" name="acao" value="rejeitar" class="btn-action btn-reject">Rejeitar</button>
                                     </form>
                                 </td>

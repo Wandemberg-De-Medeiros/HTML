@@ -10,7 +10,7 @@ urlpatterns = [
     # 2. Rotas de Autenticação
     path('login/', views.login_view, name='login'),
     path('cadastro/', views.cadastro_view, name='cadastro'),
-    path('sair/', views.logout_view, name='sair'),
+    path('sair/', views.sair_view, name='sair'),
 
     # 3. Rotas Protegidas (Dashboard/Operações)
     # A rota do Dashboard não deve ser mais a raiz.
