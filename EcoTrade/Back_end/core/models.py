@@ -1,3 +1,70 @@
 from django.db import models
 
-# Create your models here.
+# Opções de Tipos de Usuário
+TIPO_USUARIO_CHOICES = (
+    ('Administrador', 'Administrador'),
+    ('Produtor Rural', 'Produtor Rural'),
+    ('Empresa Compradora', 'Empresa Compradora'),
+)
+
+# Opções de Status de Crédito/Requisição
+STATUS_CHOICES = (
+    ('Aprovado', 'Aprovado'),
+    ('Pendente', 'Pendente'),
+    ('Rejeitado', 'Rejeitado'),
+    ('Vendido', 'Vendido'),
+)
+
+# 1. MODELO DE USUÁRIO
+class Usuario(models.Model):
+    # O email será a chave principal (única)
+    email = models.EmailField(unique=True) 
+    senha = models.CharField(max_length=128) # Senha deve ser hashizada em produção
+    nome = models.CharField(max_length=255)
+    tipo = models.CharField(max_length=50, choices=TIPO_USUARIO_CHOICES)
+    saldo_creditos = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    
+    # Campos extras para cadastro (que estavam sendo ignorados no views.py)
+    documento = models.CharField(max_length=50, blank=True, null=True)
+    cidade = models.CharField(max_length=100, blank=True, null=True)
+    estado = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.nome} ({self.tipo})"
+
+# 2. MODELO DE CRÉDITO (Créditos registrados e aprovados, listados no Marketplace)
+class CreditoCarbono(models.Model):
+    # Chave estrangeira ligando o crédito ao Produtor que o gerou
+    produtor = models.ForeignKey(Usuario, on_delete=models.CASCADE, limit_choices_to={'tipo': 'Produtor Rural'})
+    origem = models.CharField(max_length=255)
+    quantidade = models.IntegerField()
+    preco_un = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    data_registro = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='Aprovado') # Só armazena créditos aprovados
+
+    def __str__(self):
+        return f"Crédito {self.id} - {self.origem} ({self.quantidade} tCO2e)"
+
+# 3. MODELO DE REQUISIÇÃO (Para Registro e Transação)
+class Requisicao(models.Model):
+    TIPO_REQUISICAO_CHOICES = (
+        ('Registro', 'Registro de Créditos'),
+        ('Venda', 'Venda de Créditos'),
+        ('Compra', 'Compra de Créditos'),
+    )
+    
+    tipo_requisicao = models.CharField(max_length=50, choices=TIPO_REQUISICAO_CHOICES)
+    
+    # Quem enviou a requisição (Pode ser Produtor ou Empresa Compradora)
+    usuario_origem = models.ForeignKey(Usuario, on_delete=models.CASCADE) 
+    
+    # Dados variáveis dependendo do tipo (usamos campos opcionais)
+    volume = models.IntegerField(null=True, blank=True)
+    preco_un = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    origem_credito = models.CharField(max_length=255, null=True, blank=True) # Apenas para Requisição Tipo 'Registro'
+    
+    data_envio = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='Pendente')
+
+    def __str__(self):
+        return f"Req. {self.id} - {self.tipo_requisicao} ({self.status})"
