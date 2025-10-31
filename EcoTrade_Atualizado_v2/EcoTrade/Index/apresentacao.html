@@ -1,0 +1,45 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrade - Plataforma de Comércio de Créditos de Carbono</title>
+    <link rel="stylesheet" href="{% static 'apresentacao.css' %}"> 
+</head>
+<body>
+    <div class="landing-page-container">
+        <header class="landing-header">
+            <div class="logo">
+                <h1>EcoTrade</h1>
+                <p>O Futuro do Carbono Regional</p>
+            </div>
+            <nav class="auth-nav">
+                <a href="{% url 'login' %}" class="btn-login">Login</a>
+                <a href="{% url 'cadastro' %}" class="btn-primary">Cadastre-se</a>
+            </nav>
+        </header>
+
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>Comércio e Rastreamento de Créditos de Carbono Regionais</h2>
+                <p>
+                    A plataforma EcoTrade conecta produtores rurais da Amazônia que sequestram carbono a empresas que buscam compensação ambiental de forma transparente e rastreável.
+                </p>
+                <div class="cta-buttons">
+                    <a href="{% url 'cadastro' %}" class="btn-primary btn-cta">Quero me Cadastrar</a>
+                    <a href="#saiba-mais" class="btn-secondary btn-cta">Saiba Mais Sobre o Projeto</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-tree fa-7x"></i> 
+                <p>Tecnologia a favor da Bioeconomia.</p>
+            </div>
+        </section>
+
+        <footer class="landing-footer">
+            <p>&copy; 2025 EcoTrade - Semana Ubíqua UNAMA. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+</body>
+</html>
