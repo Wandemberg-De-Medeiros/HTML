@@ -1,0 +1,115 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrade - Plataforma de Comércio de Créditos de Carbono</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'apresentacao.css' %}"> 
+</head>
+<body>
+    <div class="landing-page-container">
+        <header class="landing-header">
+            <div class="logo">
+                <h1>EcoTrade</h1>
+                <p>O Futuro do Carbono Regional</p>
+            </div>
+            <nav class="auth-nav">
+                <a href="{% url 'login' %}" class="btn-login">Login</a>
+                <!-- O cadastro foi removido do sidebar do Admin, mas mantido aqui para novos usuários -->
+                <!-- <a href="{% url 'cadastro' %}" class="btn-primary">Cadastre-se</a> -->
+            </nav>
+        </header>
+
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>Comércio e Rastreamento de Créditos de Carbono Regionais</h2>
+                <p>
+                    A plataforma **EcoTrade** conecta produtores rurais da Amazônia que sequestram carbono a empresas que buscam compensação ambiental de forma transparente e rastreável. Nosso foco é na **Adaptação e Sustentabilidade** regional, garantindo a integridade dos dados e a valorização da bioeconomia.
+                </p>
+                <div class="cta-buttons">
+                    <!-- <a href="{% url 'cadastro' %}" class="btn-primary btn-cta">Quero me Cadastrar</a> -->
+                    <a href="#como-trabalhamos" class="btn-secondary btn-cta">Como Trabalhamos</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-leaf fa-7x"></i> 
+                <p>Tecnologia a favor da Bioeconomia.</p>
+            </div>
+        </section>
+
+        <!-- Seção: Como Trabalhamos -->
+        <section id="como-trabalhamos" class="info-section">
+            <h2 class="section-title">Como a EcoTrade Funciona</h2>
+            <div class="info-cards">
+                <div class="card">
+                    <i class="fas fa-tree fa-3x"></i>
+                    <h3>Registro e Certificação</h3>
+                    <p>Produtores registram seus créditos de carbono, que passam por um rigoroso processo de auditoria e certificação para garantir sua autenticidade.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-store fa-3x"></i>
+                    <h3>Marketplace Transparente</h3>
+                    <p>Créditos aprovados são listados em um marketplace transparente, onde empresas compradoras podem negociar diretamente com os produtores.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-chart-line fa-3x"></i>
+                    <h3>Rastreabilidade e API</h3>
+                    <p>Todas as transações são registradas, e uma API pública garante a rastreabilidade e a transparência dos créditos disponíveis no sistema.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Idealizadores e Equipe -->
+        <section id="equipe" class="info-section team-section">
+            <h2 class="section-title">Idealização e Desenvolvimento</h2>
+            <p class="section-subtitle">A EcoTrade nasceu de um projeto da **Semana Ubíqua - Universidade da Amazônia**, com o objetivo de criar uma solução tecnológica para o mercado regional de carbono.</p>
+            
+            <div class="team-members">
+                <div class="member-card">
+                    <i class="fas fa-user-tie fa-3x"></i>
+                    <h4>Idealizadores</h4>
+                    <p>Professores e Pesquisadores da UNAMA, focados em sustentabilidade e inovação tecnológica para a Amazônia.</p>
+                </div>
+                <div class="member-card">
+                    <i class="fas fa-code fa-3x"></i>
+                    <h4>Equipe de Desenvolvimento</h4>
+                    <p>Alunos e profissionais de TI que transformaram a visão em realidade, utilizando Django, HTML, CSS e JavaScript.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Comentários de Usuários (Fictícios) -->
+        <section id="comentarios" class="info-section testimonials-section">
+            <h2 class="section-title">O que Dizem Nossos Usuários</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"A plataforma facilitou o registro dos meus créditos e a venda foi rápida e transparente. Excelente iniciativa!"</p>
+                    <p class="author">- João Silva (Produtor Rural)</p>
+                </div>
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Conseguimos compensar nossas emissões diretamente com produtores da região, com total confiança nos dados fornecidos pela API."</p>
+                    <p class="author">- Maria Souza (Empresa Compradora)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Contato -->
+        <section id="contato" class="info-section contact-section">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> **Email:** contato@ecotrade.com</p>
+                <p><i class="fas fa-phone"></i> **Telefone:** (91) 99999-9999</p>
+                <p><i class="fas fa-map-marker-alt"></i> **Endereço:** Campus UNAMA - Belém, PA</p>
+            </div>
+        </section>
+
+        <footer class="landing-footer">
+            <p>&copy; 2025 EcoTrade - Plataforma de Comércio e Rastreamento de Créditos de Carbono. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+</body>
+</html>

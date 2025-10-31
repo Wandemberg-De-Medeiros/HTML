@@ -1,0 +1,322 @@
+/* Importação de fontes (opcional) */
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap'); */
+
+:root {
+    --primary-color: #28a745; /* Verde associado à sustentabilidade/carbono */
+    --secondary-color: #007bff; /* Azul para destaque */
+    --bg-color: #f4f7f6;
+    --sidebar-bg: #1c2e4a; /* Azul marinho escuro */
+    --card-bg: #ffffff;
+    --text-light: #f8f9fa;
+    --text-dark: #333;
+    --border-color: #dee2e6;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* Estrutura do Dashboard */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar - Barra de Navegação */
+.sidebar {
+    width: 250px;
+    background-color: var(--sidebar-bg);
+    color: var(--text-light);
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.logo p {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-bottom: 20px;
+}
+
+.main-nav ul {
+    list-style: none;
+}
+
+.main-nav li {
+    margin: 10px 0;
+}
+
+.main-nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.main-nav a:hover, .main-nav li.active a {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--primary-color);
+}
+
+.main-nav i {
+    margin-right: 10px;
+}
+
+/* Conteúdo Principal */
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-role {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* ------------------------------------------------------------------ */
+/* NOVO AJUSTE: Cartões de Estatísticas (Dashboard Summary) */
+/* ------------------------------------------------------------------ */
+
+.dashboard-summary {
+    /* CORRIGIDO: Aplica Flexbox ao container para alinhar os cartões */
+    display: flex;
+    justify-content: space-between; 
+    gap: 20px; 
+    margin-bottom: 30px;
+    flex-wrap: wrap; 
+}
+
+/* Regras removidas: .dashboard-summary h3 e .stats-grid (não utilizados ou incorretos) */
+
+.stat-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); 
+    flex: 1; /* Permite que o cartão cresça para preencher o espaço */
+    min-width: 200px; 
+    /* Garante que caberão 4 cartões na linha */
+    max-width: calc(25% - 15px); 
+    
+    /* Adiciona a borda esquerda para o destaque */
+    border-left: 5px solid var(--border-color); 
+}
+
+/* ------------------------------------------------------------------ */
+/* CORES DAS BORDAS PARA OS 4 CARTÕES (conforme o modelo) */
+/* ------------------------------------------------------------------ */
+
+/* 1. Saldo de Créditos (Verde) - Usando a classe balance-card */
+.balance-card { 
+    border-left-color: var(--primary-color); /* #28a745 */
+}
+
+/* 2. Transações Recentes (Azul) */
+.dashboard-summary .stat-card:nth-child(2) {
+    border-left-color: #007bff; 
+}
+
+/* 3. Produtores Registrados (Amarelo) */
+.dashboard-summary .stat-card:nth-child(3) {
+    border-left-color: #FFC107; 
+}
+
+/* 4. Empresas Compradoras (Vermelho) */
+.dashboard-summary .stat-card:nth-child(4) {
+    border-left-color: #dc3545; 
+}
+
+.stat-card h4 {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 2.5rem; /* Aumentado para corresponder ao modelo */
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.unit {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.stat-detail {
+    font-size: 0.85rem;
+    color: #999;
+}
+
+/* Regras de cores antigas removidas (e substituídas pelas regras nth-child) */
+/* .balance-card { border-left-color: var(--primary-color); }
+.transactions-card { border-left-color: var(--secondary-color); }
+.producers-card { border-left-color: #ffc107; }
+.companies-card { border-left-color: #dc3545; } */
+
+
+/* Tabela de Transações (mantido o original) */
+.recent-transactions {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-top: 30px;
+}
+/* ... resto do CSS da tabela e formulário ... */
+
+.recent-transactions h3 {
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    background-color: #e9ecef;
+    padding: 12px;
+    text-align: left;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+tbody td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9rem;
+}
+
+tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.type-buy { color: var(--secondary-color); font-weight: 700; }
+.type-sell { color: var(--primary-color); font-weight: 700; }
+.status-completed { color: var(--primary-color); }
+
+/* Formulário de Registro (Requisito 2) */
+.form-section {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-top: 30px;
+}
+
+.carbon-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    max-width: 600px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #218838; /* Verde mais escuro no hover */
+}
+
+/* Responsividade (Básico) */
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 10px 20px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: auto;
+    }
+
+    .logo {
+        margin-bottom: 0;
+    }
+    
+    .logo p {
+        display: none; /* Esconde o subtítulo no mobile */
+    }
+
+    .main-nav {
+        display: none; /* Oculta a navegação principal, pode ser substituída por um menu-hambúrguer */
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .user-info {
+        margin-top: 10px;
+    }
+}

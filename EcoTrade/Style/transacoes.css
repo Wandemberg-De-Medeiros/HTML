@@ -1,0 +1,117 @@
+/* Reutilizamos cores e estilos básicos do style.css e de outras páginas de formulário */
+
+/* Variáveis de cores para consistência */
+:root {
+    --buy-button-color: #28a745; /* Verde para 'Comprar' */
+    --sell-button-color: #007bff; /* Azul para 'Vender/Listar' */
+}
+
+/* Seção de Marketplace e Venda */
+.marketplace-section, .sell-credits-section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.marketplace-section h3, .sell-credits-section h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 5px;
+}
+
+/* Filtros do Marketplace (Conforme o modelo) */
+.marketplace-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.marketplace-filters input,
+.marketplace-filters select {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    flex-grow: 1;
+}
+
+.marketplace-filters button {
+    flex-shrink: 0; /* Impede que o botão encolha */
+    padding: 10px 15px; /* Ajusta o tamanho do botão de busca */
+    font-size: 0.9rem;
+}
+
+/* Tabela de Dados (Reutilizando .data-table do style.css) */
+.marketplace-table th {
+    background-color: #f1f1f1;
+}
+
+.price-col {
+    font-weight: 700;
+    color: #388e3c; /* Verde escuro para preço */
+}
+
+/* Botão de Compra */
+.btn-buy {
+    background-color: var(--buy-button-color); /* Verde */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;
+}
+
+.btn-buy:hover {
+    background-color: #1e7e34;
+}
+
+/* Seção de Venda (Sell Credits) */
+.sell-credits-section {
+    margin-top: 40px;
+}
+
+.sell-credits-section p {
+    margin-bottom: 20px;
+    color: #6c757d;
+}
+
+.sell-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+}
+
+/* Grid de duas colunas para o formulário de venda (Volume e Preço) */
+.form-group-grid.two-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px; /* Espaço maior entre os campos */
+}
+
+/* Botão de Listar para Venda */
+.btn-primary { /* Reutiliza o estilo primário do style.css */
+    align-self: flex-start; /* Alinha o botão à esquerda */
+    margin-top: 0;
+    background-color: var(--sell-button-color); /* Azul para Venda */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Texto de ajuda no formulário */
+.form-hint {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 5px;
+    display: block;
+}
