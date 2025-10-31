@@ -1,0 +1,215 @@
+:root {
+    --primary-color: #28a745; /* Verde associado à sustentabilidade/carbono */
+    --secondary-color: #007bff; /* Azul para contraste */
+    --bg-light: #f4f7f6;
+    --text-dark: #333;
+    --text-light: #ffffff;
+    --hero-bg: #e0f2f1; /* Fundo mais claro para destaque */
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.landing-page-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Header de Navegação */
+.landing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: var(--text-light);
+    box-shadow: var(--shadow);
+}
+
+.landing-header .logo h1 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+}
+
+.landing-header .logo p {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin-top: -5px;
+}
+
+.auth-nav {
+    display: flex;
+    gap: 15px;
+}
+
+/* Estilo Básico dos Botões */
+.btn-primary, .btn-login, .btn-secondary {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s, opacity 0.3s;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+}
+
+.btn-login {
+    background-color: transparent;
+    color: var(--text-dark);
+    border: 2px solid transparent;
+}
+
+.btn-login:hover {
+    opacity: 0.8;
+}
+
+/* Seção Principal (Hero) */
+.hero-section {
+    background-color: var(--hero-bg);
+    padding: 80px 50px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-content {
+    max-width: 60%;
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-cta {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+}
+
+.hero-image {
+    max-width: 40%;
+    text-align: center;
+    color: var(--primary-color);
+    opacity: 0.7;
+}
+
+/* Seção de Funcionalidades */
+.features-section {
+    padding: 60px 50px;
+    text-align: center;
+}
+
+.features-section h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background-color: var(--text-light);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.feature-card i {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.feature-card h4 {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    font-size: 0.95rem;
+    color: #6c757d;
+}
+
+/* Footer */
+.landing-footer {
+    background-color: #1c2e4a; /* Cor da sidebar do dashboard */
+    color: #f8f9fa;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+    
+    .cta-buttons {
+        justify-content: center;
+    }
+
+    .landing-header {
+        padding: 15px 20px;
+    }
+
+    .hero-section, .features-section {
+        padding: 40px 20px;
+    }
+}

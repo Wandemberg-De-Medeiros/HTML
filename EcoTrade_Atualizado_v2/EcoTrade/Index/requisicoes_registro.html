@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrade - Requisições de Registro</title> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}"> 
+    <link rel="stylesheet" href="{% static 'requisicoes.css' %}">
+</head>
+<body>
+
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h3>EcoTrade</h3>
+            <p>Créditos de Carbono</p>
+        </div>
+        
+        <nav class="main-nav">
+    <ul>
+        <li class="{% if active_page == 'dashboard' %}active{% endif %}"><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Home</a></li>
+        
+        <li class="{% if active_page == 'cadastro' %}active{% endif %}"><a href="{% url 'cadastro' %}"><i class="fas fa-user-plus"></i> Cadastro de Usuários</a></li>
+
+        {% if user_tipo == 'Administrador' %}
+            <li class="{% if active_page == 'requisicoes_registro' %}active{% endif %}">
+                <a href="{% url 'requisicoes_registro' %}">
+                    <i class="fas fa-check-circle"></i> Requisições de Registro
+                    {% if pendencias > 0 %}<span class="badge">{{ pendencias }}</span>{% endif %}
+                </a>
+            </li>
+            <li class="{% if active_page == 'requisicoes_transacao' %}active{% endif %}">
+                <a href="{% url 'requisicoes_transacao' %}">
+                    <i class="fas fa-exchange-alt"></i> Requisições Compra/Venda
+                </a>
+            </li>
+        {% else %}
+            <li class="{% if active_page == 'registro_creditos' %}active{% endif %}">
+                <a href="{% url 'registro_creditos' %}"><i class="fas fa-leaf"></i> Registro de Créditos</a>
+            </li>
+            <li class="{% if active_page == 'transacoes' %}active{% endif %}">
+                <a href="{% url 'transacoes' %}"><i class="fas fa-exchange-alt"></i> Comprar/Vender Créditos</a>
+            </li>
+        {% endif %}
+        
+        <li><a href="{% url 'sair' %}"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+    </ul>
+</nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <h2>Auditoria: Requisições de Registro de Créditos</h2>
+            <div class="user-info">
+                <span class="user-role">Tipo: {{ user_tipo }}</span>
+                <i class="fas fa-cog"></i> 
+            </div>
+        </header>
+
+        {% if mensagem_sucesso %}
+            <p class="alert-box success-box">{{ mensagem_sucesso }}</p>
+        {% endif %}
+        
+        <section class="content-section requisicoes-section">
+            <h3>Requisições Pendentes (Produtor -> Auditor)</h3>
+
+            {% if requisicoes %}
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Produtor</th>
+                                <th>Origem</th>
+                                <th>Volume (tCO2e)</th>
+                                <th>Data Reg.</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for req in requisicoes %}
+                            <tr>
+                                <td>{{ req.req_id }}</td>
+                                <td>
+                                    {{ req.produtor }}
+                                    <a href="#" class="view-details" title="Ver dados de cadastro"> <i class="fas fa-eye"></i></a>
+                                </td>
+                                <td>{{ req.origem }}</td>
+                                <td>{{ req.quantidade }}</td>
+                                <td>{{ req.data_geracao }}</td>
+                                <td class="action-buttons">
+                                    <form method="POST" action="{% url 'requisicoes_registro' %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        
+                                        <input type="hidden" name="req_id" value="{{ req.id }}"> 
+                                        
+                                        <button type="submit" name="acao" value="aprovar" class="btn-action btn-approve">Aprovar</button>
+                                    </form>
+                                    
+                                    <form method="POST" action="{% url 'requisicoes_registro' %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        
+                                        <input type="hidden" name="req_id" value="{{ req.id }}">
+                                        
+                                        <button type="submit" name="acao" value="rejeitar" class="btn-action btn-reject">Rejeitar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert-box info-box">
+                    Não há requisições de registro pendentes no momento.
+                </div>
+            {% endif %}
+        </section>
+    </main>
+</div>
+</body>
+</html>
