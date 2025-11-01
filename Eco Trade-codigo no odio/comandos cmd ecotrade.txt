@@ -1,0 +1,4 @@
+pip install django-mathfilters
+python  manage.py migrate
+python populate_db.py 
+python manage.py runserver
